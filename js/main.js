@@ -12,27 +12,40 @@ function crearLista(){
 
 	listas.appendChild(nuevaLista);
 
+	nuevaLista.id = Date();
+
 	var addTarea= document.createElement("h5");
 	var nombreAdd= document.createTextNode("Agrega tareas a esta lista");
-
 	addTarea.appendChild(nombreAdd);
 
 	var botonTareas = document.createElement("button");
 	var nombreboton = document.createTextNode("Agregar");
+	botonTareas.onclick= function agregaTarea(){
+		var nuevaTarea= document.createElement("li");
+		var tarea= document.getElementById("ingresTarea");
+		nuevaTarea.appendChild(tarea);
+		nuevaLista.appendChild(nuevaTarea);
+	}
 
+	
 	botonTareas.appendChild(nombreboton);
 	
 
 	var ingresTarea = document.createElement("input");
-	
-
 	ingresTarea.appendChild(addTarea);
+	ingresTarea.placeholder= "Agrega tarea"
+	
+	var btnBorrar= document.createElement("button");
+	//btnBorrar.setAttribute("onclick",callJavascriptFunction); function(){alert("OnClick");};
+	var nombreBorrar= document.createTextNode("Borrar Lista");
+	btnBorrar.appendChild(nombreBorrar);
 
+	nuevaLista.appendChild(btnBorrar);
 	nuevaLista.appendChild(addTarea);
 	nuevaLista.appendChild(ingresTarea);
 	nuevaLista.appendChild(botonTareas);
 
-	nombreIngresado= "";
-
-	console.log(listas);
+	document.getElementById("nombreLista").value = "";
 }
+
+
