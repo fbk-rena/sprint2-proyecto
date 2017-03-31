@@ -2,56 +2,76 @@
 
 function crearLista(){
 
-	//Crea lista
-	var nuevaLista = document.createElement("ul"); //crea elemento unordered list
-	var nombreIngresado = document.getElementById("nombreLista").value; //obtiene el valor del input nombre de nueva lista
-	var nombreLista= document.createTextNode(nombreIngresado);//transforma el valor anterior en un nodo texto
+	var listas= document.getElementById("cajaListas");
+	var secLista= document.createElement("article");
+	secLista.id= Date.now();
 
-	nuevaLista.appendChild(nombreLista);//adjunta el nombre al elemento lista, elemento lista nueva
+	var hNombreLista=  document.createElement("h3");
+	var nombreIngresado= document.getElementById("nombreLista").value;
+	hNombreLista.innerText= nombreIngresado;
 
-	var listas= document.getElementById("cajaListas");//crea el identificador de la posicion en el html
+	var addTarea= document.createElement("h4");
+	var nombreAdd= document.createTextNode("Agrega tareas a esta lista");
+	addTarea.appendChild(nombreAdd);
 
-	listas.appendChild(nuevaLista);//adjunta la lista nueva en el sitio que le indicamos
-
-	nuevaLista.id = Date(); //crea un id unico a cada lista
-
-	var addTarea= document.createElement("h5");//crea un elemento subtitulo
-	var nombreAdd= document.createTextNode("Agrega tareas a esta lista");//es el nombre que va a llevar el subtitulo
-	addTarea.appendChild(nombreAdd);//adjunta el elemento subtitulo y el nombre asignado
-
-	var botonTareas = document.createElement("button");//crea un boton
-	var nombreboton = document.createTextNode("Agregar");//indica el texto del boton
-	botonTareas.onclick= function agregaTarea(){ //asigna la funcionalidad onclick al boton dinamico, la funcion agrega las tareas a la lista
-		var nuevaTarea= document.createElement("li"); //dentro del evento on click crea un elemento de lista
-		//var tareaIngresada= document.getElementById("ingresTarea").value;//deberia extraer el valor del input, nombre de la tarea 
-		var tarea= document.createTextNode("sip");//(nuevaTarea);//convierte el texto en nodo texto ("sip") texto prueba
-		
-		//document.getElementById("nuevaTarea").value = "";
-		//var botonBorraTarea=document.createElement("button");//crea un boton
-		//var nombrebotonBorrar = document.createTextNode("Tarea Cumplida");//indica el texto del boton
-		
-		//botonBorraTarea.appendChild(nombrebotonBorrar);//adjunta el nombre al boton
-		nuevaTarea.appendChild(tarea);//adjunta el elemento de la lista al nombre de la tarea
-		nuevaLista.appendChild(nuevaTarea); // adjunta el elemento completo a la lista asignada
+	var btnBorrarLista= document.createElement("button");
+	btnBorrarLista.innerHTML= "Borrar Lista";
+	btnBorrarLista.className="borrarLista";
+	btnBorrarLista.onclick= function(){
+		listas.removeChild(secLista);
 	}
-	
-	botonTareas.appendChild(nombreboton);//adjunta el nombre al boton
-	
 
-	var ingresTarea = document.createElement("input");// crea elemeto input
-	ingresTarea.placeholder= "Agrega tarea"//coloca indicacion en el placeholder
-	
-	var btnBorrar= document.createElement("button");//crea boton
-	//botonTareas.onclick= function borraLista(){};//aplica funcionalidad on clik al boton
-	var nombreBorrar= document.createTextNode("Borrar Lista"); // nombra boton
-	btnBorrar.appendChild(nombreBorrar);// adjunta nombre al boton
+	var inputTarea= document.createElement("input");
+	inputTarea.type="text";
+	inputTarea.placeholder="Agrega nueva tarea";
+	inputTarea.id= "inputPendiente";
 
-	nuevaLista.appendChild(btnBorrar);//agrega boton borrar a nueva lista
-	nuevaLista.appendChild(addTarea);//Agrega subtitulo a nueva lista
-	nuevaLista.appendChild(ingresTarea);//agreaga caja input
-	nuevaLista.appendChild(botonTareas);//agrega boton agregar
+	var btnAgregaTarea=document.createElement("input");
+	btnAgregaTarea.type= "submit";
+	btnAgregaTarea.value= "Agregar";
 
-	document.getElementById("nombreLista").value = "";// regresa placeholder nueva lista a valor inicial
+	var iniciaLista= document.createElement("ul");
+	var li= document.createElement("li");
+
+
+	secLista.appendChild(hNombreLista);
+	secLista.appendChild(btnBorrarLista);
+	secLista.appendChild(addTarea);
+	secLista.appendChild(inputTarea);
+	secLista.appendChild(btnAgregaTarea);
+	secLista.appendChild(iniciaLista);
+
+	iniciaLista.appendChild(li);
+
+	listas.appendChild(secLista);
+
+	document.getElementById("nombreLista").value = "";
+
+	btnAgregaTarea.onclick=function (){
+        
+        var borrar=document.createElement("button");
+        borrar.className="borrar";
+        borrar.innerHTML="borrar tareas";
+
+        li.innerHTML= document.getElementById(inputPendiente).value;
+
+        return li;
+        }
+
+        var nuevoInput=document.createElement("input");
+
+        borrar.onclick=function(){
+            Lista.removeChild(li);
+          }
+
+
+
+
 }
+
+
+
+
+
 
 
